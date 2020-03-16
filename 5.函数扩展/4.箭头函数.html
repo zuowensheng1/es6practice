@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>4.箭头函数</title>
+</head>
+
+<body>
+</body>
+<script>
+    // let fn = (形参) =>{函数体}
+    // 假如函数体只有一行代码可以省略return和{}
+    let fnd = x => {
+        return x + 1;
+    }
+    let fn = x => x + 1;
+    // 函数当做参数的时候使用箭头函数
+    let ary = ["1", 2, 3];
+    console.log(ary.filter(item => typeof item === "number"));
+    //  没有this指向，里面的this是上一级作用域下的this
+    let obj={
+        fn:function(){
+            let  f=()=>{
+                console.log(this);
+            };
+            f();
+        }
+    };
+    obj.fn();
+    // 没有arguments
+    // 箭头函数不可以用作构造函数 因为不可以使用new执行
+</script>
+
+</html>

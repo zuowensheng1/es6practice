@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2.对象的方法扩展</title>
+</head>
+
+<body>
+</body>
+<script>
+    let obj1 = {name:"zhangsan"};
+    let obj2 = {age:30};
+    Object.assign(obj1, obj2);
+    console.log(obj1);
+
+    console.log(Object.getOwnPropertyDescriptor("123","length"));
+    //输出属性数组  输出值数组    输出[属性，属性值]的数组  
+    console.log(Object.keys(obj1));
+    console.log(Object.values(obj1));
+    console.log(Object.entries(obj1));//[[name,zhangsan],[age,30]]
+</script>
+
+</html>

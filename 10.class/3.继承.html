@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>1.constructor</title>
+</head>
+
+<body>
+</body>
+<script>
+    //
+    class A{
+        constructor(x){
+            this.name=x;
+        }
+        getA(){
+            console.log("woshigetA（）");
+        }
+        static getB(){
+            console.log("static function");
+        }
+    }
+    class B extends A{
+        constructor(x){
+            super(x);//子类没有this  this继承父类，就是父类A的constructor()
+            this.age = 30;
+        }
+        getA(){
+            super.getA();//super指向父类A的原型
+        }
+        static getB(){
+            super.getB();//super指向父类A
+        }
+    }
+
+    let b  = new B("zhagnfdsafdsf");
+    b.getA();
+    B.getB();
+</script>
+
+</html>

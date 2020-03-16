@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2.class的方法</title>
+</head>
+
+<body>
+</body>
+<script>
+    //static修复的方法，只可以类使用，实例无法使用
+    class  AA{
+        constructor(){
+            this.name="zhangsan";
+        }
+        getA(){
+            console.log("woshigetA（）");
+        }
+        static getB(){
+            console.log("static function");
+        }
+    }
+    let a = new AA();
+    console.log(a);
+    a.getA();
+    //a.getB();   //TypeError: a.getB is not a function
+
+    class F{
+        static getF(){
+            console.log("woshiFdegetF()");
+        }
+    };
+
+    class G extends F{
+        static getG(){
+            super.getF();
+            console.log("woshiGdegetG()");
+        }
+    }
+    let g = new  G();
+    G.getF();
+    //g.getG();
+</script>
+
+</html>

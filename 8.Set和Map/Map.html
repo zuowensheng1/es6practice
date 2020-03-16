@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2.Map</title>
+</head>
+
+<body>
+</body>
+<script>
+    //new Map([[key,value],[]...])
+    //一个对象，属性名不为字符串的都转为字符串；Map的key类型不限
+    let ary=[1,2],o={};
+    let obj = {
+        name:"zhangsan",
+        age:10,
+        1:1,
+        true:"true",
+        [ary]:ary,
+        [o]:o
+    };
+    console.log(obj);
+    let map1 = new Map([[1, "zhangsan"],[2, "lisi"],[2, "wangsi"]]);
+    console.log(map1);  //key值重复时，后面覆盖前面的
+
+    console.log(new Map([[[1,2],"12"],[true, true],[o,"ozhi"]]));
+
+    console.log(map1.get(1));
+    console.log(map1.set(1,2));//没有就添加，有就修改
+
+    //delete    删除属性key 返回true/false
+    console.log(map1.delete(3));
+    //clear 清空    无返回值
+    console.log(map1.clear());
+    console.log(map1);
+
+    let map2  = new Map([[[1,2],"12"],[true, true],[o,"ozhi"]]);
+    map2.forEach((value,index,input)=>{
+        console.log(index, value, input);
+    })
+
+</script>
+
+</html>

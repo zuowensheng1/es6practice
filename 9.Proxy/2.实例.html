@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2.Proxy实例</title>
+</head>
+
+<body>
+</body>
+<script>
+    //对对象默认操作的拦截、改写
+    //new Proxy({目标对象},{拦截的方法})
+    let obj = {name:"zhangsan", age:10};
+    let proxy1 =new Proxy(obj, {
+        get(target, key, proxy){
+            //console.log(arguments);
+            return target[key]+" from China";
+        },
+        set(target, key, value, receiver){
+            target[key]=value;
+        },
+        has(target, key){
+            console.log("has");
+            return key in target;   
+        },
+        apply(target, key, args){
+
+        }
+    });
+    proxy1.age=20;
+    console.log(proxy1.name);
+    console.log(obj);
+    console.log("age" in proxy1);
+
+    function getObj(){
+        //console.log(arguments);
+        console.log(this);
+        return {name:"zhangsan"}
+    }
+
+    let person = {
+    name: "张三"
+    };
+    let proxy2 = new Proxy(getObj, {
+        apply(target, object, args){
+            //arges  为参数，
+            //object    给函数修改this用
+            //target    getObj
+            //console.log(arguments);
+            if(object){
+                object.fn = target;
+                object.fn();
+                delete object.fn;
+
+                console.log(object);
+            }else{
+                target(...args);
+            }
+        }
+    });
+    proxy2(1,2,3);//作为函数执行时会触发apply()方法;   call也可以让函数执行
+    proxy2.call(obj,1,2,3);
+</script>
+
+</html>

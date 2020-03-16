@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>1.async</title>
+</head>
+
+<body>
+</body>
+<script>
+    //async函数默认返回一个Promise对象，默认为成功态
+    async function getA(){
+        //throw new Error("error!");//抛出异常会被catch处理
+        return "zhangsan";//return出的值就是回调函数的参数
+    }
+
+    getA().then((res)=>{
+        console.log(res);//zhangsan
+    }).catch((e)=>{
+        console.log(e);
+    });
+
+    //generator函数，分阶段执行
+    // function fn(){
+    //     yield 100;
+
+    //     yield 200;
+    // }
+    // let f = fn();//执行到100
+    // f.next();//执行到200
+    //aysnc函数是generator函数的语法糖；内置执行器
+    //默认返回一个Promise实例
+    // async function fn(){
+    //     return 10;
+    // }
+    // console.log(fn);
+</script>
+
+</html>

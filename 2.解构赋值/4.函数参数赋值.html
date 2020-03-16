@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.函数参数赋值</title>
+</head>
+<body>
+
+</body>
+<script>
+    function gatA([a,b,...c]) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+    gatA([1,2,3,4,5]);
+
+    function getA({name="ljl123",age=18}={}) {
+        console.log(name,age);
+    }
+    function getB({name,age}={name:"ljl123", age:18}){
+        console.log(name,age);
+    }
+    // gatB({name:"ljl",age:10});
+    getA();
+    getB();
+    getA({});
+    getB({});//{name,age}={},所以都是undefined
+</script>
+</html>

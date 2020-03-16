@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>1.Proxy</title>
+</head>
+
+<body>
+</body>
+<script>
+    //对对象默认操作的拦截、改写
+    //new Proxy({目标对象},{拦截的方法})
+    let obj = {name:"zhangsan", age:10};
+    let proxy1 =new Proxy(obj, {
+        get(target, key, proxy){
+            console.log(arguments);
+            return target.name+" from China";
+        }
+    });
+    console.log(proxy1.name);
+</script>
+
+</html>

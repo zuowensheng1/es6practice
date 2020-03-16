@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数参数</title>
+</head>
+<body>
+
+</body>
+<script>
+    //参数默认值
+    function fn(x="ljl",y="ES6") {
+        console.log(x, y);
+    }
+    fn(0)
+    function fn1({name="ljl",age="100"}={}) {
+        //{name="ljl",age="100"}={}
+        console.log(name, age);
+    }
+    //这两个fn1不传参数是一样的结果，都是默认{name="ljl",age="100"}，传空对象结果不一样
+    function fn1({name,age}={name:"ljl",age:"100"}) {
+        //参数作用域中 {name,age}={}
+        console.log(name, age);  //undefined undefined
+    }
+    fn1({});
+
+    //length 属性 当前形参个数，如果形参有默认值 length失真 变成没有默认值形参的个数
+    function fn2(x=10,y) {
+
+    }
+    fn2(1,2)
+    console.log(fn2.length);
+
+    //参数默认值位置 : 一般参数默认值放在最后
+    function fn3(x=10,y=20) {
+
+    }
+    // fn3(,1) 会报错
+
+    // arguments 类数组
+    function add(...values) {
+        console.log(arguments);
+        console.log(values);
+        let sum = 0;
+        for (var val of values) {
+            sum += val;
+        }
+        return sum;
+    }
+
+    add(2, 5, 3) // 10
+
+/*
+    var x = 1;
+    function foo(x, y = function() { x = 2; }) {//参数有自己的作用域
+        var x = 3;//foo块级作用域中声明了一个新的x
+        y();
+        console.log(x);
+    }
+
+    foo() // 3
+    x // 1
+*/
+    var x = 1;
+    // function foo(x, y = function() { x = 2; }) {
+    //     x = 3;//这个x指向参数x
+    //     y();
+    //     console.log(x);
+    // }
+
+    // foo() // 2
+    // console.log(x) // 1
+
+    function fn4(y=x){
+        y="fdsaf";
+        console.log(y);
+    }
+    fn4();
+
+    //let x=100;
+    function fn5(x, y=x){
+        //x=1,y=x=1
+        console.log(x);
+        console.log(y);
+    }
+    fn5(2);
+</script>
+</html>

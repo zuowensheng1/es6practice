@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>1.Promise基础</title>
+</head>
+
+<body>
+</body>
+<script>
+    //Promise   是一个异步回调的编程方法
+    //一开始的状态是等待 pending，执行resolve、reject 结果为Fulfilled或者Rejected
+    //resolve和reject执行其中一个，成功或者失败，但是无法从成功转到失败
+    //
+    let pro1 = new  Promise((resolve, reject)=>{
+        let a =1;
+        //let a=1;//语法错误，直接执行reject
+        // console.log("Promise1");
+        // resolve("success");
+        // reject("error");
+        setTimeout(()=>{
+            reject();
+        },100)
+        console.log("Promise2");
+    });
+
+    pro1.then((res)=>{
+        //resolve
+        console.log(res);
+    },(e)=>{
+        //在then中函数如果抛出异常，或者报错，浏览器直接走reject
+        //console.log(a);
+        return new Promise(function(resolve, reject){
+            reject();
+        })
+    }).then(function(){     //受上个回调函数的返回影响，没有返回值就直接执行第一个函数
+        console.log(1);
+    },function(){
+        console.log(2);
+    })
+
+    console.log("OK");
+/*
+    //  axios   fetch
+    axios.get("cart.json").then((data)=>{
+        console.log(data.data);//数据请求成功
+    },()=>{
+
+    })
+
+    function axios(url){
+        return new Promise(function (){
+            //发生ajax请求
+        })
+    }
+    //将多个异步的执行改成同步到
+    //返回一个Promise，下一个then中回调会受到上一个Promise的影响
+    axios("a.json").then(function(){
+        return axios("b.json");
+    }).then(function (data){
+        return axios("b.json");
+    })
+    */
+</script>
+
+</html>

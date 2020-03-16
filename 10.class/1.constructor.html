@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>1.constructor</title>
+</head>
+
+<body>
+</body>
+<script>
+    //函数存在变量提升，class没有
+    //函数可以遍历，class遍历时会缺少内部定义的函数,因为其不可枚举
+    function BB(){
+        this.name = "lisi";
+        this.getName = function(){   console.log(this.name)}
+    }
+    BB.prototype.getB=function (){};
+    let b = new BB();
+    for(let  key in b){
+        console.log(key);
+    }
+    console.log(b);
+    b.getName();
+
+    class  AA{
+        constructor(){
+            this.name="zhangsan";
+        }
+        getAAA(){}
+    }
+    AA.prototype.getA=function (){};
+    let a = new AA();
+    console.log(a);
+    for(let  key in a){
+        console.log(key);
+    }
+    console.log(Object.getOwnPropertyDescriptor(a.__proto__, "getAAA"));//value: ƒ, writable: true, enumerable: false, configurable: true
+</script>
+
+</html>
